@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_splash_root"
+    android:background="@drawable/logo_5"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/tv_splash_vername"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/splash_vername_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/splash_vername_textsize" />
+
+    <ProgressBar 
+        android:id="@+id/pb_splash_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_splash_vername"
+        android:layout_centerHorizontal="true"
+        />
+    
+    <TextView
+        android:id="@+id/tv_splash_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/splash_point_textsize"
+        android:layout_toRightOf="@id/pb_splash_loading"
+        android:layout_alignBottom="@id/pb_splash_loading"
+        android:layout_marginLeft="@dimen/splash_vername_margin"
+         />
+</RelativeLayout>

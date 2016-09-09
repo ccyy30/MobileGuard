@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 引导页面 -->
+    <dimen name="splash_vername_margin">40dp</dimen>
+    <dimen name="splash_vername_textsize">24sp</dimen>
+    <dimen name="splash_point_textsize">14sp</dimen>
+    
+</resources>
