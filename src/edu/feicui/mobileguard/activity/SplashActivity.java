@@ -32,6 +32,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import edu.feicui.mobileguard.R;
 import edu.feicui.mobileguard.commons.ActivityUtils;
 import edu.feicui.mobileguard.commons.CommonUtils;
+import edu.feicui.mobileguard.commons.ConfigUtils;
 import edu.feicui.mobileguard.commons.GsonUtils;
 import edu.feicui.mobileguard.commons.LogUtils;
 import edu.feicui.mobileguard.entity.GuardVersion;
@@ -46,6 +47,10 @@ public class SplashActivity extends AppCompatActivity {
 	//播放动画的控件
 	@ViewInject(R.id.layout_splash_root)
 	private RelativeLayout root;
+	
+	//显示版本名称
+	@ViewInject(R.id.tv_splash_vername)
+	private TextView tvVername;
 	
 	//显示百分比
 	@ViewInject(R.id.tv_splash_point)
@@ -99,7 +104,7 @@ public class SplashActivity extends AppCompatActivity {
 	private void getVersionCode() {
 		http = new HttpUtils();
 		http.send(HttpMethod.GET,
-		    "http://192.168.1.223:8080/mobileguardversion.json",
+				ConfigUtils.BASE_PATH+"mobileguardversion.json",
 		    versionCodeCallBack);
 	}
 	
@@ -163,6 +168,7 @@ public class SplashActivity extends AppCompatActivity {
 			
 			@Override
 			public void onCancel(DialogInterface dialog) {
+				//点击back键也会取消dialog,所以要跳转到主界面
 				navigationToHome();
 			}
 		})
@@ -180,7 +186,7 @@ public class SplashActivity extends AppCompatActivity {
 					
 					//下载更新apk,网络请求
 					http.download(
-							"http://192.168.1.223:8080/MobileGuard.apk", 
+							ConfigUtils.BASE_PATH+"MobileGuard.apk", 
 							file.getPath(), 
 							true, 
 							true,
@@ -220,7 +226,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void onSuccess(ResponseInfo<File> responseInfo) {
         	LogUtils.i("下载apk成功");
-        	
+        	installApk();
         }
 
         @Override
@@ -283,6 +289,8 @@ public class SplashActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_splash);
 		ViewUtils.inject(this); //注入view和事件
 		activityUtils = new ActivityUtils(this);
+		//设置版本名称
+		tvVername.setText(CommonUtils.getInstance(this).getVersionName());
 	}
 	
 }

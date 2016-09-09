@@ -25,7 +25,7 @@ public class CommonUtils {
 		return commonUtils;
 	}
 	
-	/** 获取当前应用程序版本*/
+	/** 获取当前应用程序版本号*/
 	public int getVersionCode(){
 		PackageInfo packageInfo = null;
 		try {
@@ -34,6 +34,17 @@ public class CommonUtils {
 			LogUtils.i("包名没有找到");
 		}
 		return packageInfo.versionCode;
+	}
+	
+	/** 获取当前应用程序版本名称*/
+	public String getVersionName(){
+		PackageInfo packageInfo = null;
+		try {
+			packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+		} catch (NameNotFoundException e) {
+			LogUtils.i("包名没有找到");
+		}
+		return packageInfo.versionName;
 	}
 	
 	/** 数字保留两位小数*/
